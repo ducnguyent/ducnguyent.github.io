@@ -1,140 +1,382 @@
-<!-- LAYOUT CONTAINER -->
-<!-- Simple header with fixed tabs. -->
-<link rel="stylesheet" href="style.css">
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Nguyễn Huỳnh Đức</span>
-    </div>
-    <!-- Tabs -->
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">About</a>
-      <a href="#fixed-tab-2" class="mdl-layout__tab">Learn</a>
-    </div>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Data Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <div class="mdl-layout__drawer">
-    <div class="avatar">
-      <img src="https://live.staticflickr.com/65535/51579579943_4e16846562_n.jpg">
-    </div>
-    <!-- /.avatar -->
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-    <div class="drawer-text">
-      Machine Learning Engineer
-    </div>
-    <!-- /.drawer-text -->
-  </div>
-  <!-- /.mdl-layout__drawer -->
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  <main class="mdl-layout__content">
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: slideInFromTop 0.8s ease-out;
+        }
 
-    <div class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-      <div class="page-content">
-        <!-- Your content goes here -->
-        <!-- Hero section -->
-        <div class="hero-section">
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #667eea;
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
 
-          <div class="hero-text mdl-typography--text-center">
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-            <h1 class="mdl-typography--display-2">I'm Nguyễn Huỳnh Đức</h1>
-            <p class="mdl-typography--display-1">
-              About me
+        .title {
+            font-size: 1.4rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: slideInFromBottom 0.8s ease-out;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #333;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header, .section {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="me.jpg" alt="Duc Nguyen Huynh" class="profile-img">
+            <h1>Duc Nguyen Huynh</h1>
+            <p class="title">Data Engineer</p>
+            <p class="bio">
+                Passionate data engineer with expertise in building scalable data pipelines, 
+                cloud infrastructure, and analytics solutions. I transform raw data into 
+                actionable insights that drive business decisions.
             </p>
+        </header>
 
-          </div>
-          <!-- /.hero-text -->
+        <section class="section">
+            <h2><i class="fas fa-cogs"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Data Engineering</h3>
+                    <p>ETL/ELT pipelines, data warehousing, stream processing</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Platforms</h3>
+                    <p>GCP, AWS - scalable data solutions</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Programming</h3>
+                    <p>Python, SQL, Scala, Java, Apache Spark</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Analytics</h3>
+                    <p>Data visualization, ML pipelines, statistical analysis</p>
+                </div>
+            </div>
+        </section>
 
-        </div>
-        <!-- /.hero-section -->
+        <section class="section">
+            <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Real-time Analytics Pipeline</h3>
+                    <p>Built a scalable streaming data pipeline processing events, 
+                    enabling real-time dashboards and alerting systems.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Apache Kafka</span>
+                        <span class="tech-tag">Spark Streaming</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Data Warehouse Architecture</h3>
+                    <p>Designed and implemented a modern data warehouse solution supporting 
+                    data for advanced analytics.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">GCS</span>
+                        <span class="tech-tag">Airflow</span>
+                        <span class="tech-tag">BigQuery</span>
+                        <span class="tech-tag">Terraform</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- INTRO -->
-        <div id="intro" class="mdl-grid intro-section">
-          <div class="about-kitty mdl-cell mdl-cell--12-col">
-            <p class="mdl-typography--headline">
-              Contact me: "nguyenhuynhduc.991999 at gmail dot com" or check my <a href="https://www.linkedin.com/in/ductay1309/">Linkedin</a> <a href="https://github.com/wdrqef">Github</a> <a href="https://twitter.com/nguyenhuynhducc">Twitter</a> 
-            </p>
-          </div>
-          <!-- /.about-kitty -->
-          <!--/.mdl-card -->
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--2dp card-small">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Finding a vet</h2>
+        <section class="section">
+            <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <div class="contact-grid">
+                <a href="mailto:nguyenhuynhduc.991999@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>Email</div>
+                </a>
+                <a href="https://linkedin.com/in/ductay1309" class="contact-item" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <div>LinkedIn</div>
+                </a>
+                <a href="https://github.com/ducnguyent" class="contact-item" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <div>GitHub</div>
+                </a>
             </div>
-            <div class="mdl-card__supporting-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem explicabo reiciendis corporis, optio animi autem, quisquam, temporibus sed deleniti officiis dolor eveniet tempore ad nulla deserunt laudantium, obcaecati esse! Officia.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-									More on finding a vet
-							</a>
-            </div>
-          </div>
-          <!--/.mdl-card -->
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--2dp card-small">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Toys for kittens</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem explicabo reiciendis corporis, optio animi autem, quisquam, temporibus sed deleniti officiis dolor eveniet tempore ad nulla deserunt laudantium, obcaecati esse! Officia.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-									More on toys
-							</a>
-            </div>
-          </div>
-          <!--/.mdl-card -->
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--2dp card-small">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Adopting a kitten</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem explicabo reiciendis corporis, optio animi autem, quisquam, temporibus sed deleniti officiis dolor eveniet tempore ad nulla deserunt laudantium, obcaecati esse! Officia.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-									More on adopting
-							</a>
-            </div>
-          </div>
-          <!--/.mdl-card -->
-        </div>
-        <!--/.mdl-grid -->
-
-      </div>
-      <!-- /.page-content -->
+        </section>
     </div>
-    <!-- /tab2 -->
 
-    <!-- Contact -->
-    <div class="mdl-grid mdl-grid--no-spacing">
+    <script>
+        // Add smooth scrolling and intersection observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
 
-      <div class="mdl-cell mdl-cell--12-col contact-intro mdl-color--indigo-900">
-        <h2 class="mdl-typography--title mdl-typography--title-color-contrast mdl-typography--font-thin mdl-typography--text-center">Make your kittens happier with my tips</h2>
-      </div>
-      <!--/.contact-intro  -->
+            sections.forEach(section => {
+                observer.observe(section);
+            });
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone contact-panel form-panel mdl-color--indigo-50">
-
-        </form>
-      </div>
-      <!--/.contact-panel -->
-
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone contact-panel address-panel mdl-typography--text-center mdl-color--indigo-100">
-
-        <p class="mdl-typography--title-color-contrast mdl-typography--text-nowrap mdl-typography--font-thin">
-          <i class="material-icons">email</i> <a href="mailto:nguyenhuynhduc.991999@gmail.com">nguyenhuynhduc.991999@gmail.com</a>
-        </p>
-
-        <p class="mdl-typography--title-color-contrast mdl-typography--text-nowrap mdl-typography--font-thin">
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="https://twitter.com/nguyenhuynhducc">Twitter</a>
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="https://github.com/ducnguyent">Github</a>
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="https://www.linkedin.com/in/ductay1309/">Linkedin</a>
-        </p>
-      </div>
-      <!-- /.contact-panel -->
-
-    </div>
-    <!-- /.mdl-grid -->
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.skill-card, .project-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
